@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anshu Pustak Pashal - Your Local Book Haven</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
     <style>
         :root {
             --primary: #2c3e50;
@@ -70,6 +71,7 @@
             font-size: 1.5rem;
             font-weight: 700;
             letter-spacing: 1px;
+            cursor: pointer;
         }
         
         nav ul {
@@ -121,7 +123,7 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://placehold.co/1200x600/2c3e50/ffffff?text=Book+Store') no-repeat center center/cover;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/322772343_585309336847974_3739849573470406674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Zq38iQzQ5e0Q7kNvgE8o9Jp&_nc_ht=scontent.fktm10-1.fna&oh=00_AYBc5j9Z7f7m5l3gY1V4J1pQq9Y5dZ4Q1m5q7X6Q7X6Q7X6Q&oe=662E4D5B') no-repeat center center/cover;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -295,7 +297,6 @@
         
         .book-image {
             height: 300px;
-            background-color: #ddd;
             background-size: cover;
             background-position: center;
             position: relative;
@@ -353,24 +354,25 @@
             align-items: center;
         }
         
-        .about-image {
+        .about-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
             height: 400px;
-            background: url('https://placehold.co/600x400/2c3e50/ffffff?text=Book+Shop+Interior') no-repeat center center/cover;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            position: relative;
         }
         
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
-            border: 2px solid var(--secondary);
-            border-radius: 8px;
-            pointer-events: none;
+        .about-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .about-gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         
         .about-text h2 {
@@ -416,165 +418,6 @@
         .stat-label {
             font-size: 1rem;
             font-weight: 500;
-        }
-        
-        /* Contact Section */
-        .contact {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, var(--primary), #1a2530);
-            color: white;
-        }
-        
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-        
-        .contact-info h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .contact-details {
-            margin-bottom: 2rem;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-        }
-        
-        .contact-icon {
-            font-size: 1.5rem;
-            color: var(--accent);
-            margin-right: 1rem;
-            min-width: 30px;
-        }
-        
-        .contact-text h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background-color: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            color: white;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .social-link:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-        
-        .contact-form .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .contact-form label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: none;
-            border-radius: 5px;
-            background-color: rgba(255,255,255,0.1);
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            background-color: rgba(255,255,255,0.2);
-            box-shadow: 0 0 0 2px var(--accent);
-        }
-        
-        .contact-form textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: #1a2530;
-            color: white;
-            padding: 3rem 0 1rem;
-            text-align: center;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            margin: 1.5rem 0;
-        }
-        
-        .footer-links a {
-            color: #ccc;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-        
-        .copyright {
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .animate-in {
-            animation: fadeInUp 0.8s ease forwards;
         }
         
         /* Testimonials Section */
@@ -681,6 +524,311 @@
             transform: scale(1.3);
         }
         
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary), #1a2530);
+            color: white;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-right: 1rem;
+            min-width: 30px;
+        }
+        
+        .contact-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            background-color: rgba(255,255,255,0.2);
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+        
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Map Section */
+        .map-section {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        #map {
+            width: 100%;
+            height: 500px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Calendar Section */
+        .calendar-section {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+        
+        .calendar-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .calendar-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .calendar-nav {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .calendar-nav-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .calendar-nav-btn:hover {
+            background-color: var(--secondary);
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .calendar-day-header {
+            text-align: center;
+            font-weight: 600;
+            padding: 1rem;
+            color: var(--primary);
+        }
+        
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .calendar-day:hover {
+            background-color: var(--light);
+            transform: scale(1.1);
+        }
+        
+        .calendar-day.today {
+            background-color: var(--secondary);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .calendar-day.event {
+            position: relative;
+        }
+        
+        .calendar-day.event::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+        }
+        
+        .calendar-events {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: var(--light);
+            border-radius: 10px;
+        }
+        
+        .event-item {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .event-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .event-date {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .event-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .event-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a2530;
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            cursor: pointer;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
         /* Responsive Design */
         @media (max-width: 992px) {
             .about-content,
@@ -689,8 +837,9 @@
                 gap: 2rem;
             }
             
-            .about-image {
-                height: 300px;
+            .about-gallery {
+                grid-template-columns: 1fr;
+                height: auto;
             }
         }
         
@@ -867,7 +1016,7 @@
         <div class="container header-container">
             <div class="logo">
                 <i class="fas fa-book"></i>
-                <h1>Anshu Pustak Pashal</h1>
+                <h1 id="home-link">Anshu Pustak Pashal</h1>
             </div>
             <nav>
                 <ul id="nav-menu">
@@ -877,6 +1026,8 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="#map-section">Location</a></li>
+                    <li><a href="#calendar-section">Events</a></li>
                 </ul>
                 <button class="mobile-menu-btn" id="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
@@ -960,7 +1111,7 @@
             </div>
             <div class="books-grid">
                 <div class="book-card">
-                    <div class="book-image" style="background-image: url('https://placehold.co/300x400/e74c3c/ffffff?text=TU+Textbook');">
+                    <div class="book-image" style="background-image: url('https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/322772343_585309336847974_3739849573470406674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Zq38iQzQ5e0Q7kNvgE8o9Jp&_nc_ht=scontent.fktm10-1.fna&oh=00_AYBc5j9Z7f7m5l3gY1V4J1pQq9Y5dZ4Q1m5q7X6Q7X6Q7X6Q&oe=662E4D5B');">
                         <div class="book-overlay">
                             <p>Perfect for university students</p>
                         </div>
@@ -973,7 +1124,7 @@
                     </div>
                 </div>
                 <div class="book-card">
-                    <div class="book-image" style="background-image: url('https://placehold.co/300x400/3498db/ffffff?text=Local+Novel');">
+                    <div class="book-image" style="background-image: url('https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/322772343_585309336847974_3739849573470406674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Zq38iQzQ5e0Q7kNvgE8o9Jp&_nc_ht=scontent.fktm10-1.fna&oh=00_AYBc5j9Z7f7m5l3gY1V4J1pQq9Y5dZ4Q1m5q7X6Q7X6Q7X6Q&oe=662E4D5B');">
                         <div class="book-overlay">
                             <p>By local Nepali author</p>
                         </div>
@@ -986,7 +1137,7 @@
                     </div>
                 </div>
                 <div class="book-card">
-                    <div class="book-image" style="background-image: url('https://placehold.co/300x400/27ae60/ffffff?text=Solution+Book');">
+                    <div class="book-image" style="background-image: url('https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/322772343_585309336847974_3739849573470406674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Zq38iQzQ5e0Q7kNvgE8o9Jp&_nc_ht=scontent.fktm10-1.fna&oh=00_AYBc5j9Z7f7m5l3gY1V4J1pQq9Y5dZ4Q1m5q7X6Q7X6Q7X6Q&oe=662E4D5B');">
                         <div class="book-overlay">
                             <p>Detailed solutions included</p>
                         </div>
@@ -999,7 +1150,7 @@
                     </div>
                 </div>
                 <div class="book-card">
-                    <div class="book-image" style="background-image: url('https://placehold.co/300x400/f39c12/ffffff?text=Stationery+Kit');">
+                    <div class="book-image" style="background-image: url('https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/322772343_585309336847974_3739849573470406674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Zq38iQzQ5e0Q7kNvgE8o9Jp&_nc_ht=scontent.fktm10-1.fna&oh=00_AYBc5j9Z7f7m5l3gY1V4J1pQq9Y5dZ4Q1m5q7X6Q7X6Q7X6Q&oe=662E4D5B');">
                         <div class="book-overlay">
                             <p>Essential school supplies</p>
                         </div>
@@ -1019,7 +1170,12 @@
     <section class="about" id="about">
         <div class="container">
             <div class="about-content">
-                <div class="about-image"></div>
+                <div class="about-gallery">
+                    <img src="https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/322772343_585309336847974_3739849573470406674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Zq38iQzQ5e0Q7kNvgE8o9Jp&_nc_ht=scontent.fktm10-1.fna&oh=00_AYBc5j9Z7f7m5l3gY1V4J1pQq9Y5dZ4Q1m5q7X6Q7X6Q7X6Q&oe=662E4D5B" alt="Shop Interior">
+                    <img src="https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/322772343_585309336847974_3739849573470406674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Zq38iQzQ5e0Q7kNvgE8o9Jp&_nc_ht=scontent.fktm10-1.fna&oh=00_AYBc5j9Z7f7m5l3gY1V4J1pQq9Y5dZ4Q1m5q7X6Q7X6Q7X6Q&oe=662E4D5B" alt="Book Display">
+                    <img src="https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/322772343_585309336847974_3739849573470406674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Zq38iQzQ5e0Q7kNvgE8o9Jp&_nc_ht=scontent.fktm10-1.fna&oh=00_AYBc5j9Z7f7m5l3gY1V4J1pQq9Y5dZ4Q1m5q7X6Q7X6Q7X6Q&oe=662E4D5B" alt="Customers">
+                    <img src="https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/322772343_585309336847974_3739849573470406674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Zq38iQzQ5e0Q7kNvgE8o9Jp&_nc_ht=scontent.fktm10-1.fna&oh=00_AYBc5j9Z7f7m5l3gY1V4J1pQq9Y5dZ4Q1m5q7X6Q7X6Q7X6Q&oe=662E4D5B" alt="Events">
+                </div>
                 <div class="about-text">
                     <h2>About Anshu Pustak Pashal</h2>
                     <p>Established in the heart of Golbazar, Asanpur, Siraha, Anshu Pustak Pashal has been serving the educational needs of students and the literary interests of the community for years. Our shop is more than just a bookstore - it's a hub for learning, discovery, and community engagement.</p>
@@ -1057,7 +1213,7 @@
                         Anshu Pustak Pashal has been my go-to place for textbooks throughout my college years. The staff is incredibly helpful and always manages to find the exact books I need, even when they're out of stock elsewhere. Their collection of solution guides saved me during exam season!
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-image" style="background-image: url('https://placehold.co/100x100/ddd/555?text=SP');"></div>
+                        <div class="author-image" style="background-image: url('https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/322772343_585309336847974_3739849573470406674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Zq38iQzQ5e0Q7kNvgE8o9Jp&_nc_ht=scontent.fktm10-1.fna&oh=00_AYBc5j9Z7f7m5l3gY1V4J1pQq9Y5dZ4Q1m5q7X6Q7X6Q7X6Q&oe=662E4D5B');"></div>
                         <div class="author-info">
                             <h4>Sudip Paudel</h4>
                             <p>BBS Student, Siraha Campus</p>
@@ -1069,7 +1225,7 @@
                         As a local author, I'm grateful to Anshu Pustak Pashal for supporting Nepali writers. They not only stocked my book but also organized a launch event that brought together readers and writers from across Siraha. Their passion for literature is truly inspiring.
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-image" style="background-image: url('https://placehold.co/100x100/ddd/555?text=SS');"></div>
+                        <div class="author-image" style="background-image: url('https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/322772343_585309336847974_3739849573470406674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Zq38iQzQ5e0Q7kNvgE8o9Jp&_nc_ht=scontent.fktm10-1.fna&oh=00_AYBc5j9Z7f7m5l3gY1V4J1pQq9Y5dZ4Q1m5q7X6Q7X6Q7X6Q&oe=662E4D5B');"></div>
                         <div class="author-info">
                             <h4>Sudheer Sharma</h4>
                             <p>Local Author</p>
@@ -1081,7 +1237,7 @@
                         I've been sending my children to Anshu Pustak Pashal for their school supplies for the past 5 years. The quality of their stationery is excellent, and they always have the complete list of required materials. The owner even remembers my children's names and grade levels!
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-image" style="background-image: url('https://placehold.co/100x100/ddd/555?text=RP');"></div>
+                        <div class="author-image" style="background-image: url('https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/322772343_585309336847974_3739849573470406674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Zq38iQzQ5e0Q7kNvgE8o9Jp&_nc_ht=scontent.fktm10-1.fna&oh=00_AYBc5j9Z7f7m5l3gY1V4J1pQq9Y5dZ4Q1m5q7X6Q7X6Q7X6Q&oe=662E4D5B');"></div>
                         <div class="author-info">
                             <h4>Rita Pandey</h4>
                             <p>Parent</p>
@@ -1140,9 +1296,18 @@
                                 <p>5:30 AM - 8:00 PM (Daily)</p>
                             </div>
                         </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-facebook"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Facebook Page</h3>
+                                <p><a href="https://www.facebook.com/anshupustakpashal/" target="_blank" style="color: var(--accent);">facebook.com/anshupustakpashal</a></p>
+                            </div>
+                        </div>
                     </div>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/anshupustakpashal/" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
@@ -1172,11 +1337,71 @@
         </div>
     </section>
 
+    <!-- Map Section -->
+    <section class="map-section" id="map-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Find Us On Map</h2>
+                <p>Visit us at our location in Golbazar, Siraha</p>
+            </div>
+            <div id="map"></div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section class="calendar-section" id="calendar-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Upcoming Events</h2>
+                <p>Check out our calendar for book launches, author visits, and special promotions</p>
+            </div>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <div class="calendar-title" id="calendar-month-year">October 2024</div>
+                    <div class="calendar-nav">
+                        <button class="calendar-nav-btn" id="prev-month">&lt; Previous</button>
+                        <button class="calendar-nav-btn" id="next-month">Next &gt;</button>
+                    </div>
+                </div>
+                <div class="calendar-grid">
+                    <div class="calendar-day-header">Sun</div>
+                    <div class="calendar-day-header">Mon</div>
+                    <div class="calendar-day-header">Tue</div>
+                    <div class="calendar-day-header">Wed</div>
+                    <div class="calendar-day-header">Thu</div>
+                    <div class="calendar-day-header">Fri</div>
+                    <div class="calendar-day-header">Sat</div>
+                    <!-- Calendar days will be generated by JavaScript -->
+                </div>
+                <div class="calendar-events">
+                    <h3>Event Details</h3>
+                    <div id="events-list">
+                        <div class="event-item">
+                            <div class="event-date">October 15, 2024</div>
+                            <div class="event-title">Book Launch: "The Mountains Whisper" by Sudheer Sharma</div>
+                            <div class="event-desc">Join us for the launch of this captivating novel that explores the beauty and challenges of rural Nepal. The author will be present for a reading and Q&A session.</div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">October 22, 2024</div>
+                            <div class="event-title">TU Textbook Fair</div>
+                            <div class="event-desc">Special discounts on all Tribhuvan University textbooks and solution guides. Perfect time to stock up for the semester!</div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">October 28, 2024</div>
+                            <div class="event-title">Children's Story Hour</div>
+                            <div class="event-desc">Bring your children for a fun-filled story hour with interactive readings and activities. Free for all attendees!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
+                <div class="footer-logo" id="footer-home-link">
                     <i class="fas fa-book"></i> Anshu Pustak Pashal
                 </div>
                 <p>Your trusted partner for educational materials and literary treasures in Siraha</p>
@@ -1186,6 +1411,8 @@
                     <a href="#books">Books</a>
                     <a href="#about">About</a>
                     <a href="#contact">Contact</a>
+                    <a href="#map-section">Location</a>
+                    <a href="#calendar-section">Events</a>
                 </div>
             </div>
             <div class="copyright">
@@ -1199,6 +1426,7 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
     <script>
         // Loading Animation
         document.addEventListener('DOMContentLoaded', function() {
@@ -1222,58 +1450,75 @@
             }, 100);
             
             // Initialize animations and interactions after loading
-            setTimeout(initAnimations, 1500);
+            setTimeout(initPage, 1500);
         });
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const navMenu = document.getElementById('nav-menu');
-        
-        mobileMenuBtn.addEventListener('click', function() {
-            navMenu.classList.toggle('show');
-        });
+        function initPage() {
+            // Initialize Mapbox
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZXhhbXBsZSIsImEiOiJjbGJlZ3B0d3AwNjNwM3FwMzBhYnRtN2R5In0.XX9W3b5Dj2Vb5t1h6J7u4w';
+            const map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: [86.2500, 26.7500], // Siraha, Nepal coordinates
+                zoom: 14
+            });
 
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
+            // Add marker for the bookstore
+            const marker = new mapboxgl.Marker({ color: '#e74c3c' })
+                .setLngLat([86.2500, 26.7500])
+                .setPopup(new mapboxgl.Popup().setHTML('<h3>Anshu Pustak Pashal</h3><p>Golbazar, Siraha, Nepal</p>'))
+                .addTo(map);
+
+            // Initialize Calendar
+            initCalendar();
+
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const navMenu = document.getElementById('nav-menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('show');
+            });
+
+            // Smooth Scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    if (this.getAttribute('href') === '#') return;
                     
-                    // Close mobile menu if open
-                    if (navMenu.classList.contains('show')) {
-                        navMenu.classList.remove('show');
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (navMenu.classList.contains('show')) {
+                            navMenu.classList.remove('show');
+                        }
                     }
+                });
+            });
+
+            // Header Scroll Effect
+            window.addEventListener('scroll', function() {
+                const header = document.getElementById('header');
+                if (window.scrollY > 100) {
+                    header.style.padding = '0.5rem 0';
+                    header.style.background = 'linear-gradient(135deg, rgba(44, 62, 80, 0.95), rgba(26, 37, 48, 0.95))';
+                    header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.2)';
+                } else {
+                    header.style.padding = '1rem 0';
+                    header.style.background = 'linear-gradient(135deg, var(--primary), #1a2530)';
+                    header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
                 }
             });
-        });
 
-        // Header Scroll Effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.style.padding = '0.5rem 0';
-                header.style.background = 'linear-gradient(135deg, rgba(44, 62, 80, 0.95), rgba(26, 37, 48, 0.95))';
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.2)';
-            } else {
-                header.style.padding = '1rem 0';
-                header.style.background = 'linear-gradient(135deg, var(--primary), #1a2530)';
-                header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
-            }
-        });
-
-        // Animation on Scroll
-        function initAnimations() {
+            // Animation on Scroll
             const animateElements = document.querySelectorAll('.animate-in');
-            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1289,117 +1534,213 @@
                 element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 observer.observe(element);
             });
-        }
 
-        // Testimonial Slider
-        const testimonialSlides = document.querySelectorAll('.testimonial-slide');
-        const navDots = document.querySelectorAll('.nav-dot');
-        let currentSlide = 0;
-        
-        function showSlide(index) {
-            testimonialSlides.forEach(slide => slide.classList.remove('active'));
-            navDots.forEach(dot => dot.classList.remove('active'));
+            // Testimonial Slider
+            const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+            const navDots = document.querySelectorAll('.nav-dot');
+            let currentSlide = 0;
             
-            testimonialSlides[index].classList.add('active');
-            navDots[index].classList.add('active');
-            currentSlide = index;
-        }
-        
-        navDots.forEach(dot => {
-            dot.addEventListener('click', function() {
-                const slideIndex = parseInt(this.getAttribute('data-slide'));
-                showSlide(slideIndex);
+            function showSlide(index) {
+                testimonialSlides.forEach(slide => slide.classList.remove('active'));
+                navDots.forEach(dot => dot.classList.remove('active'));
+                
+                testimonialSlides[index].classList.add('active');
+                navDots[index].classList.add('active');
+                currentSlide = index;
+            }
+            
+            navDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const slideIndex = parseInt(this.getAttribute('data-slide'));
+                    showSlide(slideIndex);
+                });
             });
-        });
-        
-        // Auto slide
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % testimonialSlides.length;
-            showSlide(currentSlide);
-        }, 5000);
+            
+            // Auto slide
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % testimonialSlides.length;
+                showSlide(currentSlide);
+            }, 5000);
 
-        // Stats Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.stat-number');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('id') === 'books-count' ? '1000' : 
-                                    counter.getAttribute('id') === 'customers-count' ? '5000' : '10');
-                const duration = 2000;
-                const step = target / (duration / 16);
-                let count = 0;
-                
-                const updateCount = () => {
-                    count += step;
-                    if (count < target) {
-                        counter.textContent = Math.floor(count) + (counter.getAttribute('id') === 'years-count' ? '+' : '+');
-                        requestAnimationFrame(updateCount);
-                    } else {
-                        counter.textContent = target + (counter.getAttribute('id') === 'years-count' ? '+' : '+');
+            // Stats Counter Animation
+            function animateCounters() {
+                const counters = document.querySelectorAll('.stat-number');
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('id') === 'books-count' ? '1000' : 
+                                        counter.getAttribute('id') === 'customers-count' ? '5000' : '10');
+                    const duration = 2000;
+                    const step = target / (duration / 16);
+                    let count = 0;
+                    
+                    const updateCount = () => {
+                        count += step;
+                        if (count < target) {
+                            counter.textContent = Math.floor(count) + (counter.getAttribute('id') === 'years-count' ? '+' : '+');
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            counter.textContent = target + (counter.getAttribute('id') === 'years-count' ? '+' : '+');
+                        }
+                    };
+                    
+                    updateCount();
+                });
+            }
+            
+            // Trigger counter animation when about section is in view
+            const aboutSection = document.querySelector('.about');
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        statsObserver.unobserve(entry.target);
                     }
-                };
+                });
+            }, { threshold: 0.5 });
+            
+            statsObserver.observe(aboutSection);
+
+            // Form Submission
+            const contactForm = document.getElementById('contact-form');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
                 
-                updateCount();
-            });
-        }
-        
-        // Trigger counter animation when about section is in view
-        const aboutSection = document.querySelector('.about');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    observer.unobserve(entry.target);
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const message = document.getElementById('message').value;
+                
+                // Simple validation
+                if (name && email && phone && message) {
+                    alert(`Thank you, ${name}! Your message has been sent successfully. We will contact you soon at ${phone} or ${email}.`);
+                    contactForm.reset();
+                } else {
+                    alert('Please fill in all fields.');
                 }
             });
-        }, { threshold: 0.5 });
-        
-        observer.observe(aboutSection);
 
-        // Form Submission
-        const contactForm = document.getElementById('contact-form');
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+            // Interactive Book Cards
+            const bookCards = document.querySelectorAll('.book-card');
+            bookCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Feature Cards Interaction
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.boxShadow = '0 15px 30px rgba(0,0,0,0.2)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                });
+            });
+
+            // Add click event to logo to go to homepage
+            document.getElementById('home-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            document.getElementById('footer-home-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Calendar Functionality
+        function initCalendar() {
+            const monthYearElement = document.getElementById('calendar-month-year');
+            const prevMonthBtn = document.getElementById('prev-month');
+            const nextMonthBtn = document.getElementById('next-month');
+            const calendarGrid = document.querySelector('.calendar-grid');
             
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
+            // Skip the first 7 elements (day headers)
+            const dayHeaders = 7;
             
-            // Simple validation
-            if (name && email && phone && message) {
-                alert(`Thank you, ${name}! Your message has been sent successfully. We will contact you soon at ${phone} or ${email}.`);
-                contactForm.reset();
-            } else {
-                alert('Please fill in all fields.');
+            let currentDate = new Date();
+            let currentMonth = currentDate.getMonth();
+            let currentYear = currentDate.getFullYear();
+            
+            function generateCalendar(month, year) {
+                // Clear previous days (except headers)
+                const existingDays = calendarGrid.querySelectorAll('.calendar-day');
+                existingDays.forEach(day => day.remove());
+                
+                // Update month and year display
+                const monthNames = ["January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"];
+                monthYearElement.textContent = `${monthNames[month]} ${year}`;
+                
+                // Get first day of month and total days
+                const firstDay = new Date(year, month, 1).getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+                
+                // Add empty cells for days before the first day of month
+                for (let i = 0; i < firstDay; i++) {
+                    const emptyCell = document.createElement('div');
+                    emptyCell.className = 'calendar-day';
+                    calendarGrid.appendChild(emptyCell);
+                }
+                
+                // Add cells for each day of the month
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayCell = document.createElement('div');
+                    dayCell.className = 'calendar-day';
+                    dayCell.textContent = day;
+                    
+                    // Mark today
+                    const today = new Date();
+                    if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                        dayCell.classList.add('today');
+                    }
+                    
+                    // Mark event days (for demo purposes)
+                    if ((month === 9 && (day === 15 || day === 22 || day === 28)) && year === 2024) {
+                        dayCell.classList.add('event');
+                    }
+                    
+                    calendarGrid.appendChild(dayCell);
+                }
             }
-        });
-
-        // Interactive Book Cards
-        const bookCards = document.querySelectorAll('.book-card');
-        bookCards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px)';
+            
+            // Initial calendar generation
+            generateCalendar(currentMonth, currentYear);
+            
+            // Event listeners for navigation
+            prevMonthBtn.addEventListener('click', function() {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                generateCalendar(currentMonth, currentYear);
             });
             
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
+            nextMonthBtn.addEventListener('click', function() {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                generateCalendar(currentMonth, currentYear);
             });
-        });
-
-        // Feature Cards Interaction
-        const featureCards = document.querySelectorAll('.feature-card');
-        featureCards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px)';
-                this.style.boxShadow = '0 15px 30px rgba(0,0,0,0.2)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
-            });
-        });
+        }
     </script>
 </body>
 </html>
