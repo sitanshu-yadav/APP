@@ -97,15 +97,6 @@ header a:hover::after {
     width: 80%;
 }
 
-header icon-logo {
-    width: 18px;           /* Adjust to match your design */
-    height: auto;          /* Keep proportions */
-    vertical-align: middle; /* Align with adjacent text */
-    margin-right: 6px;     /* Optional spacing */
-    border: none;          /* Just in case */
-    display: inline-block;
-}
-
 
 nav ul {
     display: flex;
