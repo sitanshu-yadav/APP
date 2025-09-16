@@ -430,35 +430,43 @@ function initCalendar() {
     const monthYearElement = document.getElementById('calendar-month-year');
     const prevMonthBtn = document.getElementById('prev-month');
     const nextMonthBtn = document.getElementById('next-month');
+    
+    // Get the calendar grid element
     const calendarGrid = document.querySelector('.calendar-grid');
     
-    // Skip the first 7 elements (day headers)
-    const dayHeaders = 7;
-    
+    // Store current date
     let currentDate = new Date();
     let currentMonth = currentDate.getMonth();
     let currentYear = currentDate.getFullYear();
     
+    // Generate calendar for a specific month and year
     function generateCalendar(month, year) {
-        // Clear previous days (except headers)
-        const existingDays = document.querySelectorAll('.calendar-day');
-        existingDays.forEach(day => day.remove());
+        // First, remove all existing day elements (keeping the 7 day headers)
+        const dayElements = document.querySelectorAll('.calendar-grid .calendar-day');
+        dayElements.forEach(day => day.remove());
         
-        // Update month and year display
+        // Update the month and year display
         const monthNames = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"];
         monthYearElement.textContent = `${monthNames[month]} ${year}`;
         
-        // Get first day of month and total days
-        const firstDay = new Date(year, month, 1).getDay();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        const today = new Date();
+        // Calculate the first day of the month (0 = Sunday, 1 = Monday, etc.)
+        const firstDayOfMonth = new Date(year, month, 1).getDay();
         
-        // Add empty cells for days before the first day of month
-        for (let i = 0; i < firstDay; i++) {
-            const emptyCell = document.createElement('div');
-            emptyCell.className = 'calendar-day';
-            calendarGrid.appendChild(emptyCell);
+        // Calculate the number of days in the month
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        
+        // Get today's date for highlighting
+        const today = new Date();
+        const isCurrentMonth = today.getMonth() === month && today.getFullYear() === year;
+        const todayDate = today.getDate();
+        
+        // Add blank cells for days before the first day of the month
+        for (let i = 0; i < firstDayOfMonth; i++) {
+            const blankDay = document.createElement('div');
+            blankDay.className = 'calendar-day';
+            blankDay.style.backgroundColor = 'transparent';
+            calendarGrid.appendChild(blankDay);
         }
         
         // Add cells for each day of the month
@@ -467,25 +475,47 @@ function initCalendar() {
             dayCell.className = 'calendar-day';
             dayCell.textContent = day;
             
-            // Mark today
-            if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+            // Highlight today's date if it's in the current month
+            if (isCurrentMonth && day === todayDate) {
                 dayCell.classList.add('today');
             }
             
-            // Add click event
+            // Add click event to highlight selected date
             dayCell.addEventListener('click', function() {
-                document.querySelectorAll('.calendar-day').forEach(d => d.style.backgroundColor = '');
-                this.style.backgroundColor = 'rgba(52, 152, 219, 0.2)';
+                // Remove highlight from all days
+                document.querySelectorAll('.calendar-day').forEach(d => {
+                    if (!d.classList.contains('today')) {
+                        d.style.backgroundColor = '';
+                        d.style.transform = '';
+                    }
+                });
+                
+                // Highlight the clicked day
+                this.style.backgroundColor = 'rgba(52, 152, 219, 0.3)';
+                this.style.transform = 'scale(1.1)';
+            });
+            
+            // Add hover effect
+            dayCell.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('today')) {
+                    this.style.backgroundColor = 'rgba(231, 76, 60, 0.1)';
+                }
+            });
+            
+            dayCell.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('today') && !this.style.backgroundColor.includes('rgba(52, 152, 219, 0.3)')) {
+                    this.style.backgroundColor = '';
+                }
             });
             
             calendarGrid.appendChild(dayCell);
         }
     }
     
-    // Initial calendar generation
+    // Generate calendar for the current month initially
     generateCalendar(currentMonth, currentYear);
     
-    // Event listeners for navigation
+    // Add event listeners for navigation buttons
     prevMonthBtn.addEventListener('click', function() {
         currentMonth--;
         if (currentMonth < 0) {
@@ -504,3 +534,13 @@ function initCalendar() {
         generateCalendar(currentMonth, currentYear);
     });
 }
+
+// Make sure to call initCalendar when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // ... your existing loading code ...
+    
+    // After loading is complete, initialize the calendar
+    setTimeout(function() {
+        initCalendar();
+    }, 1500);
+});
