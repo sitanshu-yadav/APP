@@ -116,7 +116,7 @@ nav a:hover::after {
 
 .hero {
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                url('https://www.dreamstime.com/royalty-free-stock-images-modern-spacious-bookshop-natural-color-image29821239') no-repeat center center/cover;
+                url('https://thumbs.dreamstime.com/z/modern-spacious-bookshop-natural-color-29821239.jpg?ct=jpeg') no-repeat center center/cover;
     height: 100vh;
     display: flex;
     align-items: center;
