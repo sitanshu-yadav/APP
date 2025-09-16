@@ -516,6 +516,7 @@ nav a:hover::after {
 }
 
 /* Contact Section */
+/* Contact Section */
 .contact {
     padding: 5rem 0;
     background: linear-gradient(135deg, var(--primary), #1a2530);
@@ -523,14 +524,35 @@ nav a:hover::after {
 }
 
 .contact-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column; /* Changed from grid to column layout */
     gap: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.contact-info h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+@media (min-width: 768px) {
+    .contact-container {
+        flex-direction: row; /* On larger screens, show side by side */
+        gap: 3rem;
+        max-width: 100%;
+    }
+}
+
+.contact-info, .contact-form {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.contact-info h2, .contact-form h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.5rem;
 }
 
 .contact-details {
@@ -541,6 +563,12 @@ nav a:hover::after {
     display: flex;
     align-items: flex-start;
     margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-item:last-child {
+    border-bottom: none;
 }
 
 .contact-icon {
@@ -548,11 +576,18 @@ nav a:hover::after {
     color: var(--accent);
     margin-right: 1rem;
     min-width: 30px;
+    margin-top: 3px;
 }
 
 .contact-text h3 {
     font-size: 1.2rem;
     margin-bottom: 0.3rem;
+    color: white;
+}
+
+.contact-text p {
+    color: #ccc;
+    line-height: 1.5;
 }
 
 .contact-text a {
@@ -564,6 +599,8 @@ nav a:hover::after {
     display: flex;
     gap: 1rem;
     margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .social-link {
@@ -577,6 +614,7 @@ nav a:hover::after {
     color: white;
     font-size: 1.5rem;
     transition: all 0.3s ease;
+    text-decoration: none;
 }
 
 .social-link:hover {
@@ -592,13 +630,14 @@ nav a:hover::after {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
+    color: white;
 }
 
 .contact-form input,
 .contact-form textarea {
     width: 100%;
     padding: 0.8rem;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 5px;
     background-color: rgba(255,255,255,0.1);
     color: white;
@@ -610,7 +649,8 @@ nav a:hover::after {
 .contact-form textarea:focus {
     outline: none;
     background-color: rgba(255,255,255,0.2);
-    box-shadow: 0 0 0 2px var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
 }
 
 .contact-form textarea {
@@ -618,6 +658,25 @@ nav a:hover::after {
     resize: vertical;
 }
 
+.contact-form button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.contact-form button:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
 /* Location Section with Map and Calendar */
 
 .location-section {
