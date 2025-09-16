@@ -114,7 +114,7 @@ nav a:hover::after {
 
 /* Hero Section */
 .hero {
- /*   background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/322772343_585309336847974_3739849573470406674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Zq38iQzQ5e0Q7kNvgE8o9Jp&_nc_ht=scontent.fktm10-1.fna&oh=00_AYBc5j9Z7f7m5l3gY1V4J1pQq9Y5dZ4Q1m5q7X6Q7X6Q7X6Q&oe=662E4D5B') no-repeat center center/cover;   height: 100vh;*/
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/322772343_585309336847974_3739849573470406674_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Zq38iQzQ5e0Q7kNvgE8o9Jp&_nc_ht=scontent.fktm10-1.fna&oh=00_AYBc5j9Z7f7m5l3gY1V4J1pQq9Y5dZ4Q1m5q7X6Q7X6Q7X6Q&oe=662E4D5B') no-repeat center center/cover;   height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
