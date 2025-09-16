@@ -97,6 +97,15 @@ header a:hover::after {
     width: 80%;
 }
 
+header icon-logo {
+    width: 18px;           /* Adjust to match your design */
+    height: auto;          /* Keep proportions */
+    vertical-align: middle; /* Align with adjacent text */
+    margin-right: 6px;     /* Optional spacing */
+    border: none;          /* Just in case */
+    display: inline-block;
+}
+
 
 nav ul {
     display: flex;
@@ -149,7 +158,7 @@ nav a:hover::after {
 
 .hero {
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                url('https://thumbs.dreamstime.com/z/modern-spacious-bookshop-natural-color-29821239.jpg?ct=jpeg') no-repeat center center/cover;
+                url('https://scontent.fktm8-1.fna.fbcdn.net/v/t1.6435-9/61169182_2413081442077807_7478067734882811904_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeE6cV_6gVopinq8ZKRQpfjTUD_j--a3cJ5QP-P75rdwnslZsl0_KnyWdwJNYdMnfof5UFoOoFT5EJb4BuUrGUkx&_nc_ohc=YgmrKk3a1I0Q7kNvwH4yWUO&_nc_oc=AdliFCnowCg1YcJYNQxu48OfJMx0aNk225STDPr8b6Og9Nn7vkz5Q7k5O1yTJCg8Hfw&_nc_zt=23&_nc_ht=scontent.fktm8-1.fna&_nc_gid=9r6sBa7y6fizIYY_HTIWgw&oh=00_AfbL-I-YZxbgHFzHaeenX5ePRDh-IKRMYG3kQLfFlxKhtQ&oe=68F12B99') no-repeat center center/cover;
     height: 100vh;
     display: flex;
     align-items: center;
