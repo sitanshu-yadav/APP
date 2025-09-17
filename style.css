@@ -581,7 +581,7 @@ nav a:hover::after {
 .contact {
     padding: 5rem 0;
     background: linear-gradient(135deg, var(--primary), #1a2530);
-    color: white;
+    color: var(--primary);
 }
 
 .contact-container {
