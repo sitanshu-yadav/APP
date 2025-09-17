@@ -91,34 +91,80 @@ function initPage() {
         element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(element);
     });
-
-    // Testimonial Slider
+// Testimonial Slider
+function initTestimonialSlider() {
     const testimonialSlides = document.querySelectorAll('.testimonial-slide');
     const navDots = document.querySelectorAll('.nav-dot');
     let currentSlide = 0;
+    let slideInterval;
     
     function showSlide(index) {
+        // Remove active class from all slides and dots
         testimonialSlides.forEach(slide => slide.classList.remove('active'));
         navDots.forEach(dot => dot.classList.remove('active'));
         
+        // Add active class to current slide and dot
         testimonialSlides[index].classList.add('active');
         navDots[index].classList.add('active');
+        
+        // Update current slide index
         currentSlide = index;
     }
     
-    navDots.forEach(dot => {
+    // Initialize first slide
+    showSlide(0);
+    
+    // Add click event listeners to navigation dots
+    navDots.forEach((dot, index) => {
         dot.addEventListener('click', function() {
-            const slideIndex = parseInt(this.getAttribute('data-slide'));
-            showSlide(slideIndex);
+            // Clear auto-slide interval when user manually changes slide
+            clearInterval(slideInterval);
+            
+            // Show selected slide
+            showSlide(index);
+            
+            // Restart auto-slide after manual interaction
+            startAutoSlide();
         });
     });
     
-    // Auto slide
-    setInterval(() => {
-        currentSlide = (currentSlide + 1) % testimonialSlides.length;
-        showSlide(currentSlide);
-    }, 5000);
+    // Auto slide function
+    function startAutoSlide() {
+        clearInterval(slideInterval); // Clear any existing interval
+        slideInterval = setInterval(() => {
+            currentSlide = (currentSlide + 1) % testimonialSlides.length;
+            showSlide(currentSlide);
+        }, 5000); // Change slide every 5 seconds
+    }
+    
+    // Start auto sliding
+    startAutoSlide();
+    
+    // Pause auto slide on hover, resume on mouse leave
+    const testimonialSlider = document.querySelector('.testimonial-slider');
+    testimonialSlider.addEventListener('mouseenter', function() {
+        clearInterval(slideInterval);
+    });
+    
+    testimonialSlider.addEventListener('mouseleave', function() {
+        startAutoSlide();
+    });
+}
 
+// Make sure to call this function when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // ... your existing loading code ...
+    
+    // After loading is complete, initialize all components
+    setTimeout(function() {
+        initTestimonialSlider(); // Initialize testimonial slider
+        initCalendar(); // Initialize calendar
+        // ... any other initializations
+    }, 1500);
+});
+
+
+    
     // Stats Counter Animation
     function animateCounters() {
         const counters = document.querySelectorAll('.stat-number');
